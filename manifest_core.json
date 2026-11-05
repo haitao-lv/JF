@@ -1,0 +1,74 @@
+{
+  "Article_Metadata_Core.txt": {
+    "bytes": 444,
+    "sha256": "8240e141c0d034f89f6664e91b1ab3978a95dafbd92fd504f16b6605b895b5fb"
+  },
+  "README_Core_Code.md": {
+    "bytes": 4044,
+    "sha256": "8949fca3612f5c771f16d3c00a211811bc77f0a4df7944b2136b4ca3cf7df9f1"
+  },
+  "contrast_protocol_v1.json": {
+    "bytes": 1151,
+    "sha256": "8d4cd1bfe2e435d5b4510dc8ad179cd2851560a3e0b5b909001d2ddbbd10d4dd"
+  },
+  "protocol_extension_v2.json": {
+    "bytes": 4985,
+    "sha256": "08514e8e81c0497076b4c3966b37cd2b8787cb117dc31903494c9d9b1748546e"
+  },
+  "protocol_pilot_v1.json": {
+    "bytes": 3340,
+    "sha256": "d4f0d5012c3230ec3a903f714b52722ef4a46464547908d951a083c87a6fcce2"
+  },
+  "requirements_core.txt": {
+    "bytes": 130,
+    "sha256": "10d5775699c22783c5bc32c60cc8a555491592b97f4860cc9af127bc035515fd"
+  },
+  "scripts/acquire_data.py": {
+    "bytes": 2057,
+    "sha256": "166413b027739d8b203536676ffdeffd75c19ebe3bd9b40bbc17cfbca7aad113"
+  },
+  "scripts/analyze_extension.py": {
+    "bytes": 7830,
+    "sha256": "5e43746dc07b7dda7f695ffb8eb7f23e3e02da9a37fa38398b5d1d6c23745b55"
+  },
+  "scripts/analyze_pilot.py": {
+    "bytes": 8264,
+    "sha256": "3247b1a2453954839d48b41418d847dc0988599a5816dc78d0cdb38c2940dc46"
+  },
+  "scripts/analyze_revision_v4.py": {
+    "bytes": 11410,
+    "sha256": "6b41085ca5ce92b449f165c60555b1362f37ea44e0adf3815b0806395ed5d219"
+  },
+  "scripts/audit_data.py": {
+    "bytes": 10379,
+    "sha256": "0b1bd60f9f22a6531972fdaf11a1278b35b1b63e8a8185888ba925896db4af6f"
+  },
+  "scripts/build_pilot_features.py": {
+    "bytes": 2965,
+    "sha256": "e653c884f0ed7f10e1794f9a63d5d736f6b9b22a4e860ccd04b757de98636c6d"
+  },
+  "scripts/extension_models.py": {
+    "bytes": 4416,
+    "sha256": "c1190c96fd746ff00446514d199bae67f246857d5ee77f953ea4a4c7fd01d112"
+  },
+  "scripts/prepare_extension.py": {
+    "bytes": 5209,
+    "sha256": "16e01b12d4df63e971c57a06daa548be496e619a99c361821339e37d7c44c445"
+  },
+  "scripts/run_extension.py": {
+    "bytes": 7118,
+    "sha256": "2971fa40cf97e644cb9a69e101be5712e40446fddeb4d4b2eefe65ca54616c60"
+  },
+  "scripts/run_pilot.py": {
+    "bytes": 11959,
+    "sha256": "e021a2adb5fc87c71dd080a70cd8178fa64e59ffc327cf8daf91a72fa50f3191"
+  },
+  "scripts/validate_extension.py": {
+    "bytes": 8843,
+    "sha256": "0664ee491619b7f56c68188e45206c4e3ebe834d873d3ac14749843386b97bb3"
+  },
+  "scripts/validate_pilot.py": {
+    "bytes": 5731,
+    "sha256": "871196463392cbddb123b087527306c8edc730681e2dfaa9d53b82037fc7b274"
+  }
+}

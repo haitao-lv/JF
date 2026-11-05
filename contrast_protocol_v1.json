@@ -1,0 +1,10 @@
+{
+  "status": "Exploratory analysis specified after the first absolute-prediction pilot and before examining solvent-contrast scores.",
+  "eligible_records": "Test records only, paired within the same canonical chromophore and normalized reference DOI. Exclude every chromophore/DOI/solvent group with multiple rows rather than averaging measurements of unknown conditions.",
+  "orientation": "Solvents sorted by canonical SMILES; contrast is the later solvent minus the earlier solvent.",
+  "targets": ["delta_phi", "delta_log10_tau_ns"],
+  "direction_subset": {"absolute_delta_phi_above": 0.05, "lifetime_ratio_beyond": 1.25},
+  "threshold_interpretation": "Operational resolution thresholds for exploratory scoring, not experimentally established significance cutoffs.",
+  "dependence": "Contrasts reuse measurements and chromophores. Report both record and chromophore macro scores; repeated-seed results are not independent experiments.",
+  "chemical_interpretation": "Same DOI is an incomplete control for measurement conditions. Opposite quantum-yield and lifetime responses do not independently identify a microscopic relaxation mechanism."
+}

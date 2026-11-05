@@ -1,0 +1,111 @@
+{
+  "version": "extension-v2",
+  "status": "Exploratory extension fixed after reviewing pilot-v1 and before fitting these additional models. Existing test sets are reused and are not claimed as fresh confirmation.",
+  "base_protocol": "protocol_pilot_v1.json",
+  "base_partitions": "results/pilot_v1/partitions",
+  "seeds": [
+    17,
+    41,
+    73
+  ],
+  "scenarios": {
+    "pair": "pair_id",
+    "chromophore": "chromophore_smiles",
+    "scaffold": "scaffold_id"
+  },
+  "models": {
+    "solvent_mean": {
+      "family": "solvent_mean",
+      "partial_labels": false
+    },
+    "solvent_mean_partial": {
+      "family": "solvent_mean",
+      "partial_labels": true
+    },
+    "et_independent_64": {
+      "family": "extra_trees",
+      "trees_per_target": 64,
+      "partial_labels": false
+    },
+    "et_independent_128": {
+      "family": "extra_trees",
+      "trees_per_target": 128,
+      "partial_labels": false
+    },
+    "et_independent_partial": {
+      "family": "extra_trees",
+      "trees_per_target": 128,
+      "partial_labels": true
+    },
+    "hgb_independent": {
+      "family": "hist_gradient_boosting",
+      "partial_labels": false
+    },
+    "hgb_independent_partial": {
+      "family": "hist_gradient_boosting",
+      "partial_labels": true
+    }
+  },
+  "partial_pool": "Only records with exactly one reported target and the same solvent catalog, structure validity, one-fragment rule, DOI and exact-duplicate rules as the pilot. Quantum yield must lie strictly inside (0,1), lifetime must be finite and positive. Boundary-yield paired records are not added via the missing-label route.",
+  "partial_exclusion": "For each fixed split, exclude partial records whose grouping identifier occurs in either calibration or test. Entire rows are protected regardless of which target is observed. Groups absent from the paired pilot are eligible for extra training.",
+  "training_data": "Each target uses the original paired training records plus eligible real observations of that target only. Missing labels are neither imputed nor pseudo-labeled. The two models are independent; this is not masked-loss multitask learning.",
+  "targets": [
+    "logit_phi",
+    "log10_tau_ns"
+  ],
+  "inputs": "Reuse exactly the pilot's 440 structure-only features. No measured optical properties, reference DOI, group identifier or target-availability flag enters a model.",
+  "extra_trees": {
+    "min_samples_leaf": 2,
+    "max_features": 0.8,
+    "bootstrap": false,
+    "n_jobs": 4
+  },
+  "hist_gradient_boosting": {
+    "loss": "squared_error",
+    "learning_rate": 0.05,
+    "max_iter": 250,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 20,
+    "l2_regularization": 1.0,
+    "early_stopping": false
+  },
+  "thread_limit": 4,
+  "preprocessing": "Per-target median imputation and target standardization fitted on that target's training rows only. Convert decoded predictions to float64. No hyperparameter search or early stopping on held-out data.",
+  "solvent_mean": "Arithmetic mean of observed phi or log10 lifetime for each solvent in the relevant training rows. Unseen solvents fall back to the corresponding global training mean. No shrinkage or fitted hyperparameter.",
+  "budget_interpretation": "Independent ET-64 has 128 trees in total; ET-128 has 256. These are tree-count controls, not claims of identical node counts or computational cost to 128 shared-output trees. Record realized nodes and fit times.",
+  "evaluation": "Keep the original paired calibration/test observations, metrics and 90% marginal residual-calibration procedure. Reuse the earlier exploratory solvent-contrast thresholds; report record and chromophore macro scores.",
+  "comparisons": [
+    [
+      "et_independent_64",
+      "et_logit",
+      "independent_vs_shared_total_tree_count"
+    ],
+    [
+      "et_independent_128",
+      "et_logit",
+      "independent_vs_shared_trees_per_target"
+    ],
+    [
+      "et_independent_partial",
+      "et_independent_128",
+      "extra_real_labels_ET"
+    ],
+    [
+      "hgb_independent_partial",
+      "hgb_independent",
+      "extra_real_labels_HGB"
+    ],
+    [
+      "hgb_independent",
+      "et_independent_128",
+      "boosting_vs_randomized_trees"
+    ],
+    [
+      "solvent_mean_partial",
+      "solvent_mean",
+      "extra_real_labels_solvent_baseline"
+    ]
+  ],
+  "reporting": "Report all models and all seeds. Three-seed standard deviations are descriptive, not confidence intervals. No new physical-mechanism or prospective-screening claim is introduced by this extension.",
+  "partial_target_deduplication": "Before fitting, remove added records with the same canonical chromophore, solvent, DOI and observed target value as a paired pilot record or an earlier added row (ascending source row_id). Preserve all paired pilot rows. This conservative target-level deduplication does not infer equal measurement conditions."
+}
